@@ -32,6 +32,12 @@ module.exports = {
                 500: '#FBA94C',
             },
         },
+        extend: {
+            fontFamily: {
+                sans: ['Roboto', 'sans-serif'],
+                mono: ['Roboto Mono', 'monospace'],
+            },
+        },
     },
     plugins: [],
 };
