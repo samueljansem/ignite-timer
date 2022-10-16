@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    background: #121214;
+}
+
+::-webkit-calendar-picker-indicator {
+    display: none !important;
+}
