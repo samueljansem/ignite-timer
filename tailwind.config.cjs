@@ -31,6 +31,8 @@ module.exports = {
             yellow: {
                 500: '#FBA94C',
             },
+
+            transparent: 'transparent',
         },
         extend: {
             fontFamily: {
