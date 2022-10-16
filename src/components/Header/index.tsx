@@ -1,6 +1,6 @@
-import { Logo } from '../Logo';
+import { Logo } from '../../Logo';
 import { Timer, Scroll } from 'phosphor-react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export function Header() {
     return (
