@@ -7,20 +7,6 @@ import ptBR from 'date-fns/locale/pt-BR';
 export function History() {
     const { cycles } = useCycles();
 
-    function getCycleStatus(cycle: Cycle): CycleStatus {
-        if (cycle.finishedDate) return 'completed';
-        if (cycle.interruptedDate) return 'interrupted';
-
-        return 'active';
-    }
-
-    function getCycleStatusDescription(cycle: Cycle) {
-        if (cycle.finishedDate) return 'Completo';
-        if (cycle.interruptedDate) return 'Interrompido';
-
-        return 'Ativo';
-    }
-
     return (
         <main className="w-full h-full p-12 flex flex-col">
             <h1 className="text-2xl">Meu histórico</h1>
