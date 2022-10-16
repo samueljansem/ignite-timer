@@ -1,6 +1,8 @@
 import { Cycle, CycleStatus } from '../../@types/Cycle';
 import { useCycles } from '../../hooks/useCycles';
 import { StatusIndicator } from './components/StatusIndicator';
+import { formatDistanceToNow } from 'date-fns';
+import ptBR from 'date-fns/locale/pt-BR';
 
 export function History() {
     const { cycles } = useCycles();
@@ -42,7 +44,7 @@ export function History() {
                     </thead>
                     <tbody>
                         {cycles.map((cycle) => (
-                            <tr>
+                            <tr key={cycle.id}>
                                 <td className="bg-gray-700 border-t-4 border-gray-800 p-4 text-sm">
                                     {cycle.task}
                                 </td>
@@ -50,15 +52,31 @@ export function History() {
                                     {cycle.minutes} minutos
                                 </td>
                                 <td className="bg-gray-700 border-t-4 border-gray-800 p-4 text-sm">
-                                    {String(cycle.startDate)}
+                                    {formatDistanceToNow(cycle.startDate, {
+                                        addSuffix: true,
+                                        locale: ptBR,
+                                    })}
                                 </td>
                                 <td className="bg-gray-700 border-t-4 border-gray-800 p-4 text-sm ">
-                                    <span className="flex gap-2 items-center">
-                                        <StatusIndicator
-                                            status={getCycleStatus(cycle)}
-                                        />
-                                        {getCycleStatusDescription(cycle)}
-                                    </span>
+                                    {cycle.finishedDate && (
+                                        <span className="flex gap-2 items-center">
+                                            <StatusIndicator status="completed" />
+                                            Completo
+                                        </span>
+                                    )}
+                                    {cycle.interruptedDate && (
+                                        <span className="flex gap-2 items-center">
+                                            <StatusIndicator status="interrupted" />
+                                            Interrompido
+                                        </span>
+                                    )}
+                                    {!cycle.finishedDate &&
+                                        !cycle.interruptedDate && (
+                                            <span className="flex gap-2 items-center">
+                                                <StatusIndicator status="active" />
+                                                Em andamento
+                                            </span>
+                                        )}
                                 </td>
                             </tr>
                         ))}
